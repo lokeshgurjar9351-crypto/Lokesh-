@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Loading</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background gradient */
+        .background-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 1) 100%);
+            z-index: 0;
+        }
+
+        .background-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.6);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            background: rgba(30, 30, 30, 0.5);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(50, 50, 50, 0.4);
+            top: 60%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        /* Main container */
+        .loading-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        /* Uber logo animation */
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: #000000;
+            animation: logoFloat 3s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Circular progress ring */
+        .progress-ring {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: #FFFFFF;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            animation: progress 2s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% {
+                stroke-dashoffset: 339.292;
+            }
+            50% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: -339.292;
+            }
+        }
+
+        /* Loading dots */
+        .loading-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes dotPulse {
+            0%, 60%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Status text */
+        .status-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.6;
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Pulse effect */
+        .pulse-ring {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .loading-container {
+                gap: 30px;
+                padding: 20px;
+            }
+
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo {
+                width: 70px;
+                height: 70px;
+                font-size: 40px;
+            }
+
+            .progress-ring {
+                width: 100px;
+                height: 100px;
+            }
+
+            .loading-text {
+                font-size: 16px;
+            }
+
+            .status-text {
+                font-size: 13px;
+                max-width: 250px;
+            }
+        }
+
+        /* Shimmer effect */
+        .shimmer {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="background-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Main loading container -->
+    <div class="loading-container">
+        <!-- Logo with progress ring -->
+        <div class="logo-container">
+            <div class="pulse-ring"></div>
+            <svg class="progress-ring">
+                <circle class="progress-ring-circle" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="logo">
+                <div style="position: relative; overflow: hidden;">
+                    U
+                    <div class="shimmer"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading text with animated dots -->
+        <div class="loading-text">
+            <span>Loading</span>
+            <div class="dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- Status message -->
+        <div class="status-text">
+            Preparing your ride experience
+        </div>
+    </div>
+
+    <script>
+        // Optional: Simulate loading completion
+        // Uncomment to redirect after loading
+        /*
+        setTimeout(() => {
+            window.location.href = 'main.html';
+        }, 3000);
+        */
+
+        // Add dynamic status messages
+        const statusMessages = [
+            'Preparing your ride experience',
+            'Finding nearby drivers',
+            'Calculating best routes',
+            'Almost ready to go'
+        ];
+
+        let messageIndex = 0;
+        const statusText = document.querySelector('.status-text');
+
+        setInterval(() => {
+            messageIndex = (messageIndex + 1) % statusMessages.length;
+            statusText.style.opacity = '0';
+            setTimeout(() => {
+                statusText.textContent = statusMessages[messageIndex];
+                statusText.style.opacity = '1';
+            }, 300);
+        }, 3000);
+    </script>
+</body>
+</html>
