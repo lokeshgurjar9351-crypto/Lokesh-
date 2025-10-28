@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Loading</title>
+    <title>Uber Loading</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,153 +25,147 @@
             position: relative;
         }
 
-        /* Animated background pattern */
-        .background-pattern {
+        /* Animated background grid */
+        .background-grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .background-pattern::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            opacity: 0.03;
             background-image: 
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: movePattern 30s linear infinite;
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
         }
 
-        @keyframes movePattern {
+        @keyframes gridMove {
             0% {
                 transform: translate(0, 0);
             }
             100% {
-                transform: translate(60px, 60px);
+                transform: translate(50px, 50px);
             }
         }
 
-        /* Floating geometric shapes */
-        .shape {
+        /* Gradient orbs in background */
+        .orb {
             position: absolute;
-            opacity: 0.15;
-            animation: floatShape 15s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 100px;
-            height: 100px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            top: 15%;
-            left: 10%;
-            animation-delay: 0s;
-            transform: rotate(45deg);
-        }
-
-        .shape-2 {
-            width: 80px;
-            height: 80px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            bottom: 20%;
-            right: 15%;
-            animation-delay: 3s;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: orbFloat 15s ease-in-out infinite;
         }
 
-        .shape-3 {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            top: 60%;
-            left: 80%;
-            animation-delay: 6s;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
         }
 
-        @keyframes floatShape {
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+            bottom: -80px;
+            right: -80px;
+            animation-delay: 5s;
+        }
+
+        @keyframes orbFloat {
             0%, 100% {
-                transform: translateY(0px) rotate(0deg);
+                transform: translate(0, 0) scale(1);
             }
             50% {
-                transform: translateY(-30px) rotate(180deg);
+                transform: translate(30px, -30px) scale(1.1);
             }
         }
 
-        /* Main container with glass effect */
+        /* Main container */
         .loading-container {
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 35px;
-            padding: 60px 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-            min-width: 400px;
+            gap: 40px;
         }
 
-        /* Company logo container */
-        .logo-container {
+        /* Uber logo container */
+        .logo-wrapper {
             position: relative;
-            width: 140px;
-            height: 140px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Business logo */
-        .logo {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            border-radius: 20px;
+        /* Uber logo */
+        .uber-logo {
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 52px;
+            font-size: 42px;
             font-weight: 700;
-            color: #667eea;
-            animation: logoFloat 3s ease-in-out infinite;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            color: #000000;
+            animation: logoBreath 2s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .logo::before {
+        .uber-logo::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: logoShine 3s infinite;
+            background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+            animation: logoShimmer 3s infinite;
         }
 
-        @keyframes logoFloat {
+        @keyframes logoBreath {
             0%, 100% {
-                transform: translateY(0px) scale(1);
+                transform: scale(1);
+                box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
             }
             50% {
-                transform: translateY(-8px) scale(1.02);
+                transform: scale(1.05);
+                box-shadow: 0 25px 80px rgba(255, 255, 255, 0.3);
             }
         }
 
-        @keyframes logoShine {
+        @keyframes logoShimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(0deg);
+            }
+        }
+
+        /* Rotating ring around logo */
+        .rotating-ring {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 2px solid transparent;
+            border-top-color: #ffffff;
+            border-right-color: #ffffff;
+            border-radius: 50%;
+            animation: ringRotate 1.5s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes ringRotate {
             0% {
                 transform: rotate(0deg);
             }
@@ -180,77 +174,71 @@
             }
         }
 
-        /* Circular progress indicator */
-        .progress-ring {
+        /* Pulsing ring */
+        .pulse-ring {
             position: absolute;
-            width: 140px;
-            height: 140px;
-            transform: rotate(-90deg);
+            width: 80px;
+            height: 80px;
+            border: 2px solid #ffffff;
+            border-radius: 12px;
+            animation: ringPulse 2s ease-out infinite;
+            opacity: 0;
         }
 
-        .progress-ring-bg {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.2);
-            stroke-width: 4;
-        }
-
-        .progress-ring-circle {
-            fill: none;
-            stroke: #ffffff;
-            stroke-width: 4;
-            stroke-linecap: round;
-            stroke-dasharray: 408.407;
-            stroke-dashoffset: 408.407;
-            animation: progressCircle 2.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-        }
-
-        @keyframes progressCircle {
+        @keyframes ringPulse {
             0% {
-                stroke-dashoffset: 408.407;
-            }
-            50% {
-                stroke-dashoffset: 0;
+                transform: scale(1);
+                opacity: 0.6;
             }
             100% {
-                stroke-dashoffset: -408.407;
+                transform: scale(2);
+                opacity: 0;
             }
         }
 
-        /* Company name */
-        .company-name {
+        /* Uber text */
+        .uber-text {
             color: #ffffff;
-            font-size: 28px;
+            font-size: 36px;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
+            animation: textFade 2s ease-in-out infinite;
         }
 
-        /* Loading progress bar */
-        .progress-bar-container {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
+        @keyframes textFade {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Loading bar */
+        .loading-bar-container {
+            width: 280px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
         }
 
-        .progress-bar {
+        .loading-bar {
             height: 100%;
-            background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            background: #ffffff;
             border-radius: 10px;
-            animation: progressBar 2s ease-in-out infinite;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: barProgress 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
-        @keyframes progressBar {
+        @keyframes barProgress {
             0% {
                 width: 0%;
                 transform: translateX(0);
             }
             50% {
-                width: 70%;
+                width: 80%;
             }
             100% {
                 width: 100%;
@@ -258,25 +246,16 @@
             }
         }
 
-        /* Loading text */
-        .loading-text {
+        /* Loading dots */
+        .loading-dots {
             display: flex;
+            gap: 8px;
             align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        .dots {
-            display: flex;
-            gap: 5px;
         }
 
         .dot {
-            width: 5px;
-            height: 5px;
+            width: 8px;
+            height: 8px;
             background: #ffffff;
             border-radius: 50%;
             animation: dotBounce 1.4s ease-in-out infinite;
@@ -296,27 +275,25 @@
 
         @keyframes dotBounce {
             0%, 60%, 100% {
-                opacity: 0.4;
-                transform: translateY(0);
+                transform: scale(0.8);
+                opacity: 0.5;
             }
             30% {
+                transform: scale(1.2);
                 opacity: 1;
-                transform: translateY(-8px);
             }
         }
 
-        /* Status message */
+        /* Status text */
         .status-text {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 14px;
-            font-weight: 400;
-            text-align: center;
-            max-width: 320px;
-            line-height: 1.6;
-            animation: statusFade 4s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            animation: statusPulse 3s ease-in-out infinite;
         }
 
-        @keyframes statusFade {
+        @keyframes statusPulse {
             0%, 100% {
                 opacity: 0.6;
             }
@@ -325,163 +302,154 @@
             }
         }
 
-        /* Percentage counter */
-        .percentage {
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            animation: percentageCount 2s ease-in-out infinite;
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 8s ease-in-out infinite;
         }
 
-        @keyframes percentageCount {
-            0% {
-                opacity: 0.7;
+        .particle-1 {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .particle-2 {
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .particle-3 {
+            top: 40%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+
+        .particle-4 {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 6s;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
             }
             50% {
-                opacity: 1;
-                transform: scale(1.05);
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.3;
             }
             100% {
-                opacity: 0.7;
+                transform: translateY(-200px) translateX(100px);
+                opacity: 0;
             }
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .loading-container {
-                min-width: 320px;
-                padding: 40px 30px;
-                gap: 28px;
+            .uber-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 36px;
             }
 
-            .logo-container {
+            .rotating-ring {
                 width: 120px;
                 height: 120px;
             }
 
-            .logo {
-                width: 85px;
-                height: 85px;
-                font-size: 44px;
+            .pulse-ring {
+                width: 70px;
+                height: 70px;
             }
 
-            .progress-ring {
-                width: 120px;
-                height: 120px;
+            .uber-text {
+                font-size: 30px;
             }
 
-            .company-name {
-                font-size: 24px;
-            }
-
-            .loading-text {
-                font-size: 14px;
+            .loading-bar-container {
+                width: 240px;
             }
 
             .status-text {
-                font-size: 13px;
-                max-width: 260px;
-            }
-
-            .percentage {
-                font-size: 18px;
+                font-size: 14px;
             }
         }
 
-        /* Glow effect */
-        .glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: glowPulse 3s ease-in-out infinite;
-            pointer-events: none;
+        /* Smooth fade-in on load */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes glowPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
+        .loading-container {
+            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
 <body>
     <!-- Background elements -->
-    <div class="background-pattern"></div>
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
+    <div class="background-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Floating particles -->
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
 
     <!-- Main loading container -->
     <div class="loading-container">
-        <!-- Glow effect -->
-        <div class="glow"></div>
-
-        <!-- Logo with progress ring -->
-        <div class="logo-container">
-            <svg class="progress-ring">
-                <circle class="progress-ring-bg" cx="70" cy="70" r="65"></circle>
-                <circle class="progress-ring-circle" cx="70" cy="70" r="65"></circle>
-            </svg>
+        <!-- Logo with animations -->
+        <div class="logo-wrapper">
+            <div class="pulse-ring"></div>
+            <div class="rotating-ring"></div>
             
-            <div class="logo">
-                B
+            <div class="uber-logo">
+                U
             </div>
         </div>
 
-        <!-- Company name -->
-        <div class="company-name">
-            BusinessHub
+        <!-- Uber text -->
+        <div class="uber-text">
+            Uber
         </div>
 
-        <!-- Progress bar -->
-        <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+        <!-- Loading bar -->
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
         </div>
 
-        <!-- Percentage -->
-        <div class="percentage" id="percentage">0%</div>
-
-        <!-- Loading text with animated dots -->
-        <div class="loading-text">
-            <span>Loading your workspace</span>
-            <div class="dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
+        <!-- Loading dots -->
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
 
-        <!-- Status message -->
+        <!-- Status text -->
         <div class="status-text">
-            Setting up your professional dashboard
+            Getting things ready
         </div>
     </div>
-
-    <script>
-        // Animate percentage counter
-        let percentage = 0;
-        const percentageElement = document.getElementById('percentage');
-        
-        function updatePercentage() {
-            percentage = (percentage + 1) % 101;
-            percentageElement.textContent = percentage + '%';
-            
-            if (percentage === 100) {
-                setTimeout(() => {
-                    percentage = 0;
-                }, 500);
-            }
-        }
-        
-        setInterval(updatePercentage, 25);
-    </script>
 </body>
 </html>
